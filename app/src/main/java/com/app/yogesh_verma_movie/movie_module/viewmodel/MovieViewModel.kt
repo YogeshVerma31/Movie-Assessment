@@ -13,13 +13,24 @@ class MovieViewModel(baseActivity: BaseActivity?):BaseViewModel(){
     private val movieRepository = MovieRepository(BaseCloudAPIService.getApiService(MovieApiService::class.java),baseActivity)
 
     internal val movieListLiveData = MutableLiveData<MovieModel>()
+    internal val movieMoreListLiveData = MutableLiveData<MovieModel>()
 
     fun getMovies(showBlockingLoader:Boolean,apiKey:String){
         scope.launch {
             try{
                 movieListLiveData.postValue(movieRepository.getMovies(showBlockingLoader,apiKey))
             }catch (e:Throwable){
+                e.printStackTrace()
+            }
+        }
+    }
 
+    fun getMoreMovies(showBlockingLoader:Boolean,apiKey:String,page:Int){
+        scope.launch {
+            try{
+                movieMoreListLiveData.postValue(movieRepository.getMoreMovies(showBlockingLoader,apiKey,page))
+            }catch (e:Throwable){
+                e.printStackTrace()
             }
         }
     }

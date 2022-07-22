@@ -41,7 +41,7 @@ open class BaseRepository(private val baseActivity: BaseActivity?,private val ba
             return Results.Error(error = response.errorBody()?.string().toString())
         }catch (e:Exception){
             baseActivity?.hideBlockingLoader()
-            return Results.Error("Something went wrong!")
+            return Results.Error(e.localizedMessage)
         }
     }
 

@@ -10,8 +10,10 @@ import retrofit2.http.Query
 
 interface MovieApiService:BaseApiService {
 
-    @Headers(BaseAPIConstants.CONTENT_TYPE_JSON)
     @GET(BaseAPIConstants.API_MOVIES)
     suspend fun getMovies(@Query("api_key") api_key:String):Response<MovieModel>
+
+    @GET(BaseAPIConstants.API_MOVIES)
+    suspend fun getMoreMovies(@Query("api_key") api_key:String,@Query("page") page:Int):Response<MovieModel>
 
 }

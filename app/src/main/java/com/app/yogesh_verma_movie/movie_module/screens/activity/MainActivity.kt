@@ -50,7 +50,6 @@ class MainActivity : BaseActivity() {
     }
 
     override fun initViewModels() {
-        setOnClickListener(_viewBinder.bottomNavigationView)
     }
 
     override fun initView() {

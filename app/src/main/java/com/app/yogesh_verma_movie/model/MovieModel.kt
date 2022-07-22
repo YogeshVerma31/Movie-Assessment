@@ -7,7 +7,7 @@ data class MovieModel(
     @SerializedName("page")
     var page: Int = 0,
     @SerializedName("results")
-    var results: MutableList<results>? = null,
+    var results: MutableList<Results>? = null,
     @SerializedName("total_pages")
     var total_pages: Int = 0,
     @SerializedName("total_results")
@@ -16,13 +16,13 @@ data class MovieModel(
 
 
 
-data class results(
+data class Results(
     @SerializedName("adult")
     var adult: Boolean? = null,
     @SerializedName("backdrop_path")
     var backdropPath: String? = null,
     @SerializedName("genre_ids")
-    var genreIds: String? = null,
+    var genreIds: List<Int>,
     @SerializedName("id")
     var id: Int = 0,
     @SerializedName("original_language")
@@ -42,7 +42,8 @@ data class results(
     @SerializedName("video")
     var video: Boolean? = null,
     @SerializedName("vote_average")
-    var voteAverage: Int = 0,
+    var voteAverage: Double? =   null,
     @SerializedName("vote_count")
     var voteCount: Int = 0
 )
+
