@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/bnvMovie"
+        android:title="Movie"
+        android:icon="@drawable/ic_movie"/>
+    <item
+        android:id="@+id/bnvFavourite"
+        android:title="Favourite"
+        android:icon="@drawable/ic_favorite"/>
+    <item
+        android:id="@+id/bnvWatchLater"
+        android:title="Watch Later"
+        android:icon="@drawable/ic_watch_later"/>
+</menu>

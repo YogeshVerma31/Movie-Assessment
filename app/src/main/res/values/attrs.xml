@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="CustomEditText">
+        <attr name="setLabel" format="string"/>
+        <attr name="setHint" format="string"/>
+        <attr name="setText" format="string"/>
+        <attr name="getText" format="string"/>
+        <attr name="isEnabled" format="boolean"/>
+        <attr name="android:inputType"/>
+        <attr name="android:imeOptions"/>
+    </declare-styleable>
+
+</resources>

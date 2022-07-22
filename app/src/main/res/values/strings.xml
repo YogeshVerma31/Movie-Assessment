@@ -1,0 +1,35 @@
+<resources>
+
+    <string name="try_again">Try Again!</string>
+    <string name="cancel">Cancel</string>
+    <string name="something_went_wrong_pls_try_again">Something went wrong!,Please try again.</string>
+    <string name="error_empty_mobile">Mobile is required</string>
+    <string name="okay">okay</string>
+
+    <string name="button_skip_now">Skip now</string>
+    <string name="button_login">Sign In</string>
+    <string name="button_verify_mobile">Verify Mobile Number</string>
+    <string name="get_started">Get Started</string>
+    <string name="next">Next</string>
+    <string name="button_create_account">Create Account</string>
+    <string name="welcome_to">Welcome to</string>
+
+
+    <string name="label_mobile">Enter your mobile</string>
+
+    <string name="hint_name">Enter your name</string>
+    <string name="hint_email">Example : info@xyz.com</string>
+    <string name="hint_password">* * * * * * * *</string>
+    <string name="hint_first_name">John</string>
+    <string name="hint_last_name">Doe</string>
+    <string name="hint_gender">Select your Gender</string>
+    <string name="hint_height">Example : 150</string>
+    <string name="hint_weight">Example : 58</string>
+    <string name="hint_mobile">Ex : +91 9876543210</string>
+
+    <string name="text_verification_code">Verification Code</string>
+    <string name="text_verification_code_sent_to">Please type the verification code sent to %1s</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+</resources>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="theme_color">#000000</color>
+    <color name="theme_color_primary">#006be6</color>
+    <color name="theme_color_secondary">#0041c7</color>
+    <color name="white">#FFFFFF</color>
+    <color name="gray_a6">#a6a6a6</color>
+    <color name="gray_d2">#d2d2d2</color>
+    <color name="graye5">#e5e5e5</color>
+    <color name="theme_background_color">@color/white</color>
+
+
+    <color name="purple_200">#FFBB86FC</color>
+    <color name="purple_500">#FF6200EE</color>
+    <color name="purple_700">#FF3700B3</color>
+    <color name="teal_200">#FF03DAC5</color>
+    <color name="teal_700">#FF018786</color>
+    <color name="black">#FF000000</color>
+    <color name="black_3e">#3E3E3E</color>
+
+    <color name="text_color_black_2A">#2A2A2A</color>
+    <color name="text_color_black_4A">#4A4A4A</color>
+    <color name="text_color_black_56">#565656</color>
+    <color name="text_color_black_70">#707070</color>
+    <color name="text_color_gree_17">#176273</color>
+
+    <color name="background_color_EF">#EFEFEF</color>
+    <color name="background_color_FC">#FCBA9B</color>
+    <color name="background_color_F3">#F36446</color>
+    <color name="background_color_F2">#F25E3D</color>
+
+
+    <color name="text_error_color_FF">#ff0015</color>
+    <color name="text_error_color_F2">#F25E3D</color>
+
+    <color name="dialog_negative_color">@color/gray_a6</color>
+
+</resources>
