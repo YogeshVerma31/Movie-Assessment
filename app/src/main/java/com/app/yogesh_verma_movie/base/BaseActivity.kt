@@ -86,6 +86,9 @@ abstract class BaseActivity:AppCompatActivity() {
         view?.setOnClickListener(onClickListener)
     }
 
+
+
+
     private fun cancelToastMessage() {
         toastMessage?.cancel()
     }

@@ -5,6 +5,8 @@ object BaseAppConstants {
 
     const val KEY_MOBILE_NUMBER = "mobile_number"
 
+    const val KEY_RESULTS_MODEL = "results_model"
+
     const val KEY_FROM = "from"
     const val KEY_FROM_LOGOUT = "from_logout"
 

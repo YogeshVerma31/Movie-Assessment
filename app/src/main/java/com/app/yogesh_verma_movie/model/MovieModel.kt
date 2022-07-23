@@ -45,5 +45,5 @@ data class Results(
     var voteAverage: Double? =   null,
     @SerializedName("vote_count")
     var voteCount: Int = 0
-)
+):Serializable
 

@@ -11,6 +11,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Yogesh_Verma_Movie">
         <activity
+            android:name=".movie_module.screens.activity.MovieDetailActivity"
+            android:exported="false" />
+        <activity
             android:name=".account_module.screens.AccountActivity"
             android:exported="true">
             <intent-filter>
@@ -18,13 +21,10 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
         <activity
             android:name=".movie_module.screens.activity.MainActivity"
-            android:exported="true">
-
-        </activity>
+            android:exported="true"></activity>
     </application>
 
 </manifest>

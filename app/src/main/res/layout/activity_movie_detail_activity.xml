@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".movie_module.screens.activity.MainActivity">
+    tools:context=".movie_module.screens.activity.MovieDetailActivity">
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appBarLayout"
@@ -20,31 +20,15 @@
             android:id="@+id/toolBar"
             android:layout_width="match_parent"
             android:layout_height="?android:attr/actionBarSize"
-            app:title="@string/app_name"
             app:titleTextColor="@color/white"
             />
     </com.google.android.material.appbar.AppBarLayout>
 
-
     <FrameLayout
-        android:id="@+id/flBottomContainer"
+        android:id="@+id/flMovieDetails"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:elevation="@dimen/_30sdp"
-        app:layout_constraintBottom_toTopOf="@+id/bottomNavigationView"
-        app:layout_constraintTop_toBottomOf="@+id/appBarLayout" />
-
-
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/bottomNavigationView"
-        android:layout_width="match_parent"
-        android:layout_height="75dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        android:clickable="true"
-        android:focusable="true"
-        app:menu="@menu/bottom_nav_menu"/>
+        app:layout_constraintTop_toBottomOf="@+id/appBarLayout" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -14,5 +14,6 @@
         <!-- Customize your theme here. -->
         <item name="android:forceDarkAllowed">false</item>
         <item name="android:windowLightStatusBar">false</item>
+        <item name="colorControlNormal">@color/white</item>
     </style>
 </resources>

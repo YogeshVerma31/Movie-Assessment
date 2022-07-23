@@ -12,7 +12,9 @@ import com.app.yogesh_verma_movie.extensions.addFragmentWithFadeIn
 import com.app.yogesh_verma_movie.extensions.addFragmentWithFadeInNoStack
 import com.app.yogesh_verma_movie.extensions.removeFragmentFromBottom
 import com.app.yogesh_verma_movie.extensions.replaceFragmentFromBottom
+import com.app.yogesh_verma_movie.model.Results
 import com.app.yogesh_verma_movie.movie_module.screens.fragments.FavouriteFragment
+import com.app.yogesh_verma_movie.movie_module.screens.fragments.MovieDetailFragment
 import com.app.yogesh_verma_movie.movie_module.screens.fragments.MovieFragment
 import com.app.yogesh_verma_movie.movie_module.screens.fragments.WatchLaterFragment
 
@@ -26,6 +28,7 @@ class MainActivity : BaseActivity() {
 
 
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(_viewBinder.root)
@@ -33,15 +36,15 @@ class MainActivity : BaseActivity() {
         _viewBinder.bottomNavigationView.setOnNavigationItemSelectedListener {
             when(it.itemId){
                 R.id.bnvMovie ->{
-                    supportFragmentManager.replaceFragmentFromBottom(R.id.flMainContainer,movieFragment!!,MovieFragment.TAG)
+                    supportFragmentManager.replaceFragmentFromBottom(R.id.flBottomContainer,movieFragment!!,MovieFragment.TAG)
                 }
                 R.id.bnvFavourite->{
-                    supportFragmentManager.replaceFragmentFromBottom(R.id.flMainContainer,favouriteFragment!!,FavouriteFragment.TAG)
+                    supportFragmentManager.replaceFragmentFromBottom(R.id.flBottomContainer,favouriteFragment!!,FavouriteFragment.TAG)
 
                 }
 
                 R.id.bnvWatchLater->{
-                    supportFragmentManager.replaceFragmentFromBottom(R.id.flMainContainer,watchLaterFragment!!,WatchLaterFragment.TAG)
+                    supportFragmentManager.replaceFragmentFromBottom(R.id.flBottomContainer,watchLaterFragment!!,WatchLaterFragment.TAG)
                 }
             }
             true
@@ -57,7 +60,7 @@ class MainActivity : BaseActivity() {
         favouriteFragment = FavouriteFragment.getInstance()
         watchLaterFragment = WatchLaterFragment.getInstance()
 
-        supportFragmentManager.replaceFragmentFromBottom(R.id.flMainContainer,movieFragment!!,MovieFragment.TAG)
+        supportFragmentManager.replaceFragmentFromBottom(R.id.flBottomContainer,movieFragment!!,MovieFragment.TAG)
 
 
     }
@@ -78,6 +81,8 @@ class MainActivity : BaseActivity() {
     override fun onViewClick(view: View?) {
 
     }
+
+
 
 
 }

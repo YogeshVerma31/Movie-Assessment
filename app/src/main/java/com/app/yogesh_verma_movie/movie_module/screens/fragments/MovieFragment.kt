@@ -1,5 +1,6 @@
 package com.app.yogesh_verma_movie.movie_module.screens.fragments
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -14,6 +15,8 @@ import com.app.yogesh_verma_movie.databinding.FragmentMovieBinding
 import com.app.yogesh_verma_movie.model.Results
 import com.app.yogesh_verma_movie.movie_module.adapters.MovieAdapter
 import com.app.yogesh_verma_movie.movie_module.listeners.OnMovieItemClickListener
+import com.app.yogesh_verma_movie.movie_module.screens.activity.MovieDetailActivity
+import com.app.yogesh_verma_movie.movie_module.screens.activity.MovieDetailActivity.Companion.getIntent
 import com.app.yogesh_verma_movie.movie_module.viewmodel.MovieViewModel
 
 class MovieFragment : BaseFragment() {
@@ -31,8 +34,9 @@ class MovieFragment : BaseFragment() {
     private var movieList:MutableList<Results> = arrayListOf()
     private lateinit var movieVideoModel:MovieViewModel
     private lateinit var movieAdapter:MovieAdapter
-    private var pageCount: Int = 0
+    private var pageCount: Int = 1
 
+    private var movieDetailFragment:MovieDetailFragment ?=null
 
 
     override fun onCreateView(
@@ -58,7 +62,6 @@ class MovieFragment : BaseFragment() {
         _viewBinder!!.rvMovie.apply {
             layoutManager = GridLayoutManager(context,2)
             adapter = movieAdapter
-            addOnScrollListener(onScrollListener)
         }
         movieAdapter.apply {
             setOnClickListener(onMovieItemClickListener)
@@ -66,14 +69,14 @@ class MovieFragment : BaseFragment() {
     }
 
     override fun setListeners() {
-
+        _viewBinder!!.rvMovie.addOnScrollListener(onScrollListener)
     }
 
     override fun setObservers() {
         movieVideoModel.movieListLiveData.observe(this, Observer {
             if (it.results!=null){
                 movieAdapter.addItems(it.results!!)
-                pageCount = 1
+                pageCount++
             }
         })
 
@@ -90,24 +93,26 @@ class MovieFragment : BaseFragment() {
 
     private val onMovieItemClickListener = object : OnMovieItemClickListener{
         override fun onMovieItemClick(results: Results?, position: Int) {
-            showToast(results?.title)
+            getIntent(context,results!!)
         }
 
     }
+
+
 
     private val onScrollListener =object: RecyclerView.OnScrollListener() {
         override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
             super.onScrolled(recyclerView, dx, dy)
             if (!_viewBinder!!.rvMovie.canScrollVertically(1)){
-                showToast("Please Wait")
-                _viewBinder?.pbLoadMore?.visibility =View.VISIBLE
-                movieVideoModel.getMoreMovies(false,BuildConfig.API_KEY,pageCount)
-
+                loadMoreMovies()
             }
         }
     }
 
-
+    private fun loadMoreMovies(){
+        _viewBinder?.pbLoadMore?.visibility =View.VISIBLE
+        movieVideoModel.getMoreMovies(false,BuildConfig.API_KEY,pageCount)
+    }
 
 
 
