@@ -32,4 +32,8 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
+    <string name="text_title_with_date">%1s (%2s)</string>
+    <string name="text_user_score">%1s</string>
+
+
 </resources>

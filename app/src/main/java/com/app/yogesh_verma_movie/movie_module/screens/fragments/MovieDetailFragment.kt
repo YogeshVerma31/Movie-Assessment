@@ -13,6 +13,7 @@ import com.app.yogesh_verma_movie.base.BaseFragment
 import com.app.yogesh_verma_movie.constants.BaseAppConstants
 import com.app.yogesh_verma_movie.databinding.FragmentMovieBinding
 import com.app.yogesh_verma_movie.databinding.FragmentMovieDetailBinding
+import com.app.yogesh_verma_movie.model.MovieDetailsModel
 import com.app.yogesh_verma_movie.model.MovieModel
 import com.app.yogesh_verma_movie.model.Results
 import com.app.yogesh_verma_movie.movie_module.screens.activity.MainActivity
@@ -75,10 +76,18 @@ class MovieDetailFragment : BaseFragment() {
 
     override fun setObservers() {
         movieViewModel.movieDetailsListLiveData.observe(this, Observer {
-            showToast(it.title)
+            setDataToScreen(it)
         })
     }
 
-    fun showMovieDetailFragment(resultsModel: Results){
+    fun setDataToScreen(movieDetailsModel: MovieDetailsModel){
+        _viewBinder?.model = movieDetailsModel
+        _viewBinder?.collectionModel = movieDetailsModel.belongs_to_collection
+        _viewBinder?.tvMovieTitle?.text = getString(R.string.text_title_with_date,movieDetailsModel.title,movieDetailsModel.release_date.substring(0,4))
+        _viewBinder?.tvUserScore?.text = getString(R.string.text_user_score,"${((movieDetailsModel.vote_average)*10).toInt()}%")
+        _viewBinder?.pbUserScore?.progress = ((movieDetailsModel.vote_average)*10).toInt()
     }
+
+
+
 }
