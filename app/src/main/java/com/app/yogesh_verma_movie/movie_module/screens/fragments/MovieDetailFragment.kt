@@ -15,7 +15,9 @@ import com.app.yogesh_verma_movie.databinding.FragmentMovieBinding
 import com.app.yogesh_verma_movie.databinding.FragmentMovieDetailBinding
 import com.app.yogesh_verma_movie.model.MovieDetailsModel
 import com.app.yogesh_verma_movie.model.MovieModel
+import com.app.yogesh_verma_movie.model.ProductionCompany
 import com.app.yogesh_verma_movie.model.Results
+import com.app.yogesh_verma_movie.movie_module.adapters.ProductionCompanyAdapter
 import com.app.yogesh_verma_movie.movie_module.screens.activity.MainActivity
 import com.app.yogesh_verma_movie.movie_module.viewmodel.MovieViewModel
 
@@ -24,26 +26,27 @@ class MovieDetailFragment : BaseFragment() {
     companion object {
         var TAG = BaseFragment::class.java.simpleName
 
-        fun getInstance():MovieDetailFragment{
+        fun getInstance(): MovieDetailFragment {
             return MovieDetailFragment()
         }
 
-        fun getBundle(resultsModel: Results):Bundle{
+        fun getBundle(resultsModel: Results): Bundle {
             return Bundle().apply {
-                putSerializable(BaseAppConstants.KEY_RESULTS_MODEL,resultsModel)
+                putSerializable(BaseAppConstants.KEY_RESULTS_MODEL, resultsModel)
             }
         }
     }
 
-    private var _viewBinder : FragmentMovieDetailBinding? = null
+    private var _viewBinder: FragmentMovieDetailBinding? = null
 
-    private lateinit var movieViewModel:MovieViewModel
+    private lateinit var movieViewModel: MovieViewModel
+    private lateinit var productionCompanyAdapter: ProductionCompanyAdapter
 
 
-    private val resultsModel:Results?
-        get(){
-        return arguments?.getSerializable(BaseAppConstants.KEY_RESULTS_MODEL)as Results?
-    }
+    private val resultsModel: Results?
+        get() {
+            return arguments?.getSerializable(BaseAppConstants.KEY_RESULTS_MODEL) as Results?
+        }
 
 
     override fun onCreateView(
@@ -55,11 +58,13 @@ class MovieDetailFragment : BaseFragment() {
     }
 
 
-
-
     override fun initViewModels() {
-        movieViewModel = getViewModel(fragment = this,viewModel = MovieViewModel(activity as BaseActivity),className = MovieViewModel::class.java)
-        movieViewModel.getMovieDetails(true,BuildConfig.API_KEY,movieId = resultsModel!!.id)
+        movieViewModel = getViewModel(
+            fragment = this,
+            viewModel = MovieViewModel(activity as BaseActivity),
+            className = MovieViewModel::class.java
+        )
+        movieViewModel.getMovieDetails(true, BuildConfig.API_KEY, movieId = resultsModel!!.id)
     }
 
     override fun onViewClick(view: View?) {
@@ -80,14 +85,31 @@ class MovieDetailFragment : BaseFragment() {
         })
     }
 
-    fun setDataToScreen(movieDetailsModel: MovieDetailsModel){
-        _viewBinder?.model = movieDetailsModel
-        _viewBinder?.collectionModel = movieDetailsModel.belongs_to_collection
-        _viewBinder?.tvMovieTitle?.text = getString(R.string.text_title_with_date,movieDetailsModel.title,movieDetailsModel.release_date.substring(0,4))
-        _viewBinder?.tvUserScore?.text = getString(R.string.text_user_score,"${((movieDetailsModel.vote_average)*10).toInt()}%")
-        _viewBinder?.pbUserScore?.progress = ((movieDetailsModel.vote_average)*10).toInt()
+    private fun setDataToScreen(movieDetailsModel: MovieDetailsModel) {
+        _viewBinder?.apply {
+            model = movieDetailsModel
+            collectionModel = movieDetailsModel.belongs_to_collection
+            tvMovieTitle.text = getString(
+                R.string.text_title_with_date,
+                movieDetailsModel.title,
+                movieDetailsModel.release_date.substring(0, 4)
+            )
+            tvUserScore.text = getString(
+                R.string.text_user_score,
+                "${((movieDetailsModel.vote_average) * 10).toInt()}%"
+            )
+            pbUserScore.progress = ((movieDetailsModel.vote_average) * 10).toInt()
+        }
+
+        setDataToRecyclerView(movieDetailsModel.production_companies)
     }
 
-
-
+    private fun setDataToRecyclerView(productionCompanyList: MutableList<ProductionCompany>) {
+        productionCompanyAdapter = ProductionCompanyAdapter()
+        _viewBinder?.rvProductionCompany?.adapter = productionCompanyAdapter
+        productionCompanyAdapter.addItems(productionCompanyList,true)
+    }
 }
+
+
+

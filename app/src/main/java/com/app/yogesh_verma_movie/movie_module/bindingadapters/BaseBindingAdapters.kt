@@ -11,12 +11,17 @@ object BaseBindingAdapters {
     @BindingAdapter("loadImage")
     @JvmStatic
     fun loadImage(view: ImageView?, url: String?) {
-        view?.loadImage(url)
+        view?.loadImage(url,R.drawable.notavailable)
     }
 
-    @BindingAdapter("setTextUserScore")
+    @BindingAdapter("hourMinute")
     @JvmStatic
-    fun setTextUserScore(view: TextView?,userScore:Int?){
-        view?.text = "${userScore?.times(10)}%"
+    fun hourMinute(view: TextView?, time: Int) {
+        var hours = time.div(60)
+        var minute = time.mod(60)
+        view?.text = "$hours h $minute m"
+
     }
+
+
 }

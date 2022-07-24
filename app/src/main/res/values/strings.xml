@@ -34,6 +34,11 @@
 
     <string name="text_title_with_date">%1s (%2s)</string>
     <string name="text_user_score">%1s</string>
+    <string name="user_score">Audience Score</string>
+    <string name="text_overview">Overview</string>
+    <string name="text_release_date">Release Date:-</string>
+    <string name="text_duration">Duration:-</string>
+    <string name="text_production_company">Production Company</string>
 
 
 </resources>

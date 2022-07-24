@@ -13,9 +13,7 @@
         android:clipToPadding="false"
         android:padding="@dimen/_5sdp"
         app:layout_constraintBottom_toTopOf="@+id/pbLoadMore"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
-        tools:layout_editor_absoluteX="0dp" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ProgressBar
         android:id="@+id/pbLoadMore"
