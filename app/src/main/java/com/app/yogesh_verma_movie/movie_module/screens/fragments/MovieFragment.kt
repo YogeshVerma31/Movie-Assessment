@@ -1,21 +1,20 @@
 package com.app.yogesh_verma_movie.movie_module.screens.fragments
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
-import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.app.yogesh_verma_movie.BuildConfig
+import com.app.yogesh_verma_movie.R
 import com.app.yogesh_verma_movie.base.BaseActivity
 import com.app.yogesh_verma_movie.base.BaseFragment
 import com.app.yogesh_verma_movie.databinding.FragmentMovieBinding
 import com.app.yogesh_verma_movie.model.Results
 import com.app.yogesh_verma_movie.movie_module.adapters.MovieAdapter
 import com.app.yogesh_verma_movie.movie_module.listeners.OnMovieItemClickListener
-import com.app.yogesh_verma_movie.movie_module.screens.activity.MovieDetailActivity
 import com.app.yogesh_verma_movie.movie_module.screens.activity.MovieDetailActivity.Companion.getIntent
 import com.app.yogesh_verma_movie.movie_module.viewmodel.MovieViewModel
 
@@ -33,7 +32,8 @@ class MovieFragment : BaseFragment() {
     private var _viewBinder: FragmentMovieBinding? = null
     private var movieList:MutableList<Results> = arrayListOf()
     private lateinit var movieVideoModel:MovieViewModel
-    private lateinit var movieAdapter:MovieAdapter
+    private lateinit var popularMovieAdapter:MovieAdapter
+    private lateinit var upcomingMovieAdapter:MovieAdapter
     private var pageCount: Int = 1
 
     private var movieDetailFragment:MovieDetailFragment ?=null
@@ -50,6 +50,7 @@ class MovieFragment : BaseFragment() {
     override fun initViewModels() {
         movieVideoModel = getViewModel(fragment = this,viewModel = MovieViewModel(activity as BaseActivity),className = MovieViewModel::class.java)
         movieVideoModel.getMovies(true,BuildConfig.API_KEY)
+        movieVideoModel.getUpcomingMovies(true,BuildConfig.API_KEY)
 
     }
 
@@ -58,35 +59,50 @@ class MovieFragment : BaseFragment() {
     }
 
     override fun initView(view: View) {
-        movieAdapter = MovieAdapter()
-        _viewBinder!!.rvMovie.apply {
-            layoutManager = GridLayoutManager(context,2)
-            adapter = movieAdapter
+        popularMovieAdapter = MovieAdapter()
+        _viewBinder!!.lyPopularMovieContainer.rvMovieMain.apply {
+            layoutManager =LinearLayoutManager(context,LinearLayoutManager.HORIZONTAL,false)
+            adapter = popularMovieAdapter
         }
-        movieAdapter.apply {
+        popularMovieAdapter.apply {
+            setOnClickListener(onMovieItemClickListener)
+        }
+
+        setUpcomingMovieRecyclerview()
+    }
+
+    private fun setUpcomingMovieRecyclerview() {
+        upcomingMovieAdapter = MovieAdapter()
+        _viewBinder!!.lyUpcomingMovieContainer.tvCategoryMain.text = getString(R.string.text_upcoming_movies)
+        _viewBinder!!.lyUpcomingMovieContainer.rvMovieMain.apply {
+            layoutManager =LinearLayoutManager(context,LinearLayoutManager.HORIZONTAL,false)
+            adapter = upcomingMovieAdapter
+        }
+        upcomingMovieAdapter.apply {
             setOnClickListener(onMovieItemClickListener)
         }
     }
 
     override fun setListeners() {
-        _viewBinder!!.rvMovie.addOnScrollListener(onScrollListener)
+//        _viewBinder!!.rvMovie.addOnScrollListener(onScrollListener)
     }
 
     override fun setObservers() {
         movieVideoModel.movieListLiveData.observe(this, Observer {
             if (it.results!=null){
-                movieAdapter.addItems(it.results!!)
+                popularMovieAdapter.addItems(it.results!!)
                 pageCount++
             }
         })
 
-        movieVideoModel.movieMoreListLiveData.observe(this, Observer {
+        movieVideoModel.movieUpcomingListLiveData.observe(this, Observer {
             if (it.results!=null){
-                movieAdapter.addItems(it.results!!)
-                pageCount++
+                upcomingMovieAdapter.addItems(it.results!!)
                 _viewBinder?.pbLoadMore?.visibility =View.GONE
             }
         })
+
+
 
 
     }

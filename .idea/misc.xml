@@ -5,19 +5,28 @@
       <map>
         <entry key="..\:/Yogesh_Verma_Movie/app/src/main/res/drawable/background_edit_text_box.xml" value="0.1345" />
         <entry key="..\:/Yogesh_Verma_Movie/app/src/main/res/drawable/background_progress.xml" value="0.1345" />
+        <entry key="..\:/Yogesh_Verma_Movie/app/src/main/res/drawable/background_stroke.xml" value="0.1285" />
+        <entry key="..\:/Yogesh_Verma_Movie/app/src/main/res/drawable/ic_favorite.xml" value="0.1285" />
+        <entry key="..\:/Yogesh_Verma_Movie/app/src/main/res/drawable/ic_movie.xml" value="0.1385" />
+        <entry key="..\:/Yogesh_Verma_Movie/app/src/main/res/drawable/loading_animation.xml" value="0.1385" />
+        <entry key="..\:/Yogesh_Verma_Movie/app/src/main/res/drawable/loading_img.xml" value="0.1385" />
         <entry key="..\:/Yogesh_Verma_Movie/app/src/main/res/layout/activity_account.xml" value="0.22447916666666667" />
         <entry key="..\:/Yogesh_Verma_Movie/app/src/main/res/layout/activity_main.xml" value="0.22447916666666667" />
         <entry key="..\:/Yogesh_Verma_Movie/app/src/main/res/layout/activity_movie_detail_activity.xml" value="0.221025641025641" />
         <entry key="..\:/Yogesh_Verma_Movie/app/src/main/res/layout/activity_movie_detail_fragment.xml" value="0.21041666666666667" />
+        <entry key="..\:/Yogesh_Verma_Movie/app/src/main/res/layout/attrs.xml" value="0.22447916666666667" />
         <entry key="..\:/Yogesh_Verma_Movie/app/src/main/res/layout/fragment_favourite.xml" value="0.22447916666666667" />
+        <entry key="..\:/Yogesh_Verma_Movie/app/src/main/res/layout/fragment_home.xml" value="0.22447916666666667" />
         <entry key="..\:/Yogesh_Verma_Movie/app/src/main/res/layout/fragment_mobile_verification_otp.xml" value="0.22447916666666667" />
         <entry key="..\:/Yogesh_Verma_Movie/app/src/main/res/layout/fragment_movie.xml" value="0.22447916666666667" />
-        <entry key="..\:/Yogesh_Verma_Movie/app/src/main/res/layout/fragment_movie_detail.xml" value="0.25" />
+        <entry key="..\:/Yogesh_Verma_Movie/app/src/main/res/layout/fragment_movie_detail.xml" value="0.22" />
         <entry key="..\:/Yogesh_Verma_Movie/app/src/main/res/layout/fragment_watch_later.xml" value="0.22447916666666667" />
-        <entry key="..\:/Yogesh_Verma_Movie/app/src/main/res/layout/item_movie.xml" value="0.22447916666666667" />
+        <entry key="..\:/Yogesh_Verma_Movie/app/src/main/res/layout/item_movie.xml" value="0.1839080459770115" />
         <entry key="..\:/Yogesh_Verma_Movie/app/src/main/res/layout/item_production_company.xml" value="0.22447916666666667" />
         <entry key="..\:/Yogesh_Verma_Movie/app/src/main/res/layout/layout_blocking_loader.xml" value="0.221025641025641" />
         <entry key="..\:/Yogesh_Verma_Movie/app/src/main/res/layout/layout_custom_edit_text.xml" value="0.221025641025641" />
+        <entry key="..\:/Yogesh_Verma_Movie/app/src/main/res/layout/layout_movie_container.xml" value="0.22447916666666667" />
+        <entry key="..\:/Yogesh_Verma_Movie/app/src/main/res/layout/widget_tab_indicators.xml" value="0.22447916666666667" />
         <entry key="..\:/Yogesh_Verma_Movie/app/src/main/res/menu/bottom_nav_menu.xml" value="0.221025641025641" />
       </map>
     </option>

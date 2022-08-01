@@ -15,12 +15,21 @@ class MovieViewModel(baseActivity: BaseActivity?):BaseViewModel(){
 
     internal val movieListLiveData = MutableLiveData<MovieModel>()
     internal val movieMoreListLiveData = MutableLiveData<MovieModel>()
+    internal val movieUpcomingListLiveData = MutableLiveData<MovieModel>()
     internal val movieDetailsListLiveData = MutableLiveData<MovieDetailsModel>()
 
     fun getMovies(showBlockingLoader:Boolean,apiKey:String){
         scope.launch {
             try{
                 movieListLiveData.postValue(movieRepository.getMovies(showBlockingLoader,apiKey))
+            }catch (e:Throwable){
+                e.printStackTrace()
+            }
+        }
+    }fun getUpcomingMovies(showBlockingLoader:Boolean,apiKey:String){
+        scope.launch {
+            try{
+                movieUpcomingListLiveData.postValue(movieRepository.getUpcomingMovies(showBlockingLoader,apiKey))
             }catch (e:Throwable){
                 e.printStackTrace()
             }

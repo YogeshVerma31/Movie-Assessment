@@ -1,4 +1,4 @@
-package com.app.yogesh_verma_movie.account_module.customviews
+package com.app.yogesh_verma_movie.customviews
 
 import android.content.Context
 import android.text.InputType
@@ -10,6 +10,9 @@ import com.app.yogesh_verma_movie.R
 import com.app.yogesh_verma_movie.databinding.LayoutCustomEditTextBinding
 
 class CustomEditText:FrameLayout {
+
+
+
 
     private var binding: LayoutCustomEditTextBinding? = null
 

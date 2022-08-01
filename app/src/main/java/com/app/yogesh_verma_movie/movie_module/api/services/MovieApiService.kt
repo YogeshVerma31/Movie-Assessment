@@ -15,9 +15,15 @@ interface MovieApiService:BaseApiService {
     @GET(BaseAPIConstants.API_MOVIES)
     suspend fun getMovies(@Query("api_key") api_key:String):Response<MovieModel>
 
+    @GET(BaseAPIConstants.API_UPCOMING_MOVIES)
+    suspend fun getUpcomingMovies(@Query("api_key") api_key:String):Response<MovieModel>
+
     @GET(BaseAPIConstants.API_MOVIES)
     suspend fun getMoreMovies(@Query("api_key") api_key:String,@Query("page") page:Int):Response<MovieModel>
 
     @GET(BaseAPIConstants.API_MOVIE_DEATILS)
     suspend fun getMovieDetails(@Path("movieId") movieId:Int,@Query("api_key") api_key: String):Response<MovieDetailsModel>
+
+
+
 }

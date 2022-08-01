@@ -33,6 +33,8 @@ abstract class BaseFragment: Fragment() {
         setObservers()
     }
 
+
+
     protected fun setOnClickListener(view: View?){
         view?.setOnClickListener(onClickListener)
     }
@@ -63,4 +65,6 @@ abstract class BaseFragment: Fragment() {
     protected fun<T: ViewModel> getViewModel(fragment:Fragment, viewModel: ViewModel, className:Class<T>): T {
         return ViewModelProviders.of(fragment, BaseViewModelFactory(viewModel,className)).get(className)
     }
+
+
 }

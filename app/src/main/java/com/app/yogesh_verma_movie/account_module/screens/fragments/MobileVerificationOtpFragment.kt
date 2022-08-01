@@ -35,7 +35,7 @@ class MobileVerificationOtpFragment : BaseFragment() {
 
     private var _viewBinder: FragmentMobileVerificationOtpBinding? = null
 
-    private var mobileNumber:String? = null
+    private val mobileNumber:String?
         get(){
             return arguments?.getString(BaseAppConstants.KEY_MOBILE_NUMBER)
         }

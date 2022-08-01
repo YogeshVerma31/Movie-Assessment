@@ -39,6 +39,12 @@
     <string name="text_release_date">Release Date:-</string>
     <string name="text_duration">Duration:-</string>
     <string name="text_production_company">Production Company</string>
+    <string name="text_popular_movies">Popular Movies</string>
+    <string name="button_view_all">View All</string>
+    <string name="button_add_to_wishlist">Add To WishList</string>
+    <string name="button_add_to_favourite">Add to Favourite</string>
+    <string name="text_search_movie">Search Movie</string>
+    <string name="text_upcoming_movies">UPCOMING MOVIES</string>
 
 
 </resources>

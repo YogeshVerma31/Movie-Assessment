@@ -34,7 +34,7 @@
                     android:paddingEnd="@dimen/_25sdp"
                     android:paddingBottom="@dimen/_25sdp">
 
-                    <com.app.yogesh_verma_movie.account_module.customviews.CustomEditText
+                    <com.app.yogesh_verma_movie.customviews.CustomEditText
                         android:id="@+id/etUserMobile"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"

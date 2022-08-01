@@ -31,7 +31,7 @@ class MovieAdapter:RecyclerView.Adapter<MovieViewHolder>() {
     }
 
     override fun getItemCount(): Int {
-        return movieList.size
+        return if(movieList.size <10) movieList.size else 10
     }
 
     fun getItems():MutableList<Results>{

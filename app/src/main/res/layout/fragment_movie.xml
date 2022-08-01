@@ -12,8 +12,26 @@
         android:layout_height="0dp"
         android:clipToPadding="false"
         android:padding="@dimen/_5sdp"
+        android:visibility="gone"
         app:layout_constraintBottom_toTopOf="@+id/pbLoadMore"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <include
+        android:id="@+id/lyUpcomingMovieContainer"
+        layout="@layout/layout_movie_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        />
+
+    <include
+        android:id="@+id/lyPopularMovieContainer"
+        layout="@layout/layout_movie_container"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/lyUpcomingMovieContainer"
+        app:layout_constraintEnd_toEndOf="parent"/>
 
     <ProgressBar
         android:id="@+id/pbLoadMore"

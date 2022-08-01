@@ -17,6 +17,13 @@ class MovieRepository(
         )
     }
 
+    suspend fun getUpcomingMovies(showBlockingLoader: Boolean, apiKey: String): MovieModel {
+        return doSafeAPIRequest(
+            call = { movieApiService.getUpcomingMovies(apiKey) },
+            showBlockingLoader = showBlockingLoader
+        )
+    }
+
     suspend fun getMoreMovies(showBlockingLoader: Boolean, apiKey: String,page:Int): MovieModel {
         return doSafeAPIRequest(
             call = { movieApiService.getMoreMovies(apiKey,page) },
@@ -30,5 +37,7 @@ class MovieRepository(
             showBlockingLoader = showBlockingLoader
         )
     }
+
+
 
 }
