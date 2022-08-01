@@ -1,48 +1,77 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".movie_module.screens.fragments.MovieFragment">
+    android:layout_height="match_parent">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvMovie"
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:clipToPadding="false"
-        android:padding="@dimen/_5sdp"
-        android:visibility="gone"
-        app:layout_constraintBottom_toTopOf="@+id/pbLoadMore"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <include
-        android:id="@+id/lyUpcomingMovieContainer"
-        layout="@layout/layout_movie_container"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        />
-
-    <include
-        android:id="@+id/lyPopularMovieContainer"
-        layout="@layout/layout_movie_container"
-        android:layout_marginTop="@dimen/_10sdp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/lyUpcomingMovieContainer"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent">
 
-    <ProgressBar
-        android:id="@+id/pbLoadMore"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAlignment="center"
-        android:visibility="gone"
-        android:indeterminateTint="@color/black"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
 
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:context=".movie_module.screens.fragments.MovieFragment">
+
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvMovie"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:clipToPadding="false"
+                android:padding="@dimen/_5sdp"
+                android:visibility="gone"
+                app:layout_constraintBottom_toTopOf="@+id/pbLoadMore"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <include
+                android:id="@+id/lyUpcomingMovieContainer"
+                layout="@layout/layout_movie_container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <include
+                android:id="@+id/lyPopularMovieContainer"
+                layout="@layout/layout_movie_container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_10sdp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/lyUpcomingMovieContainer" />
+
+
+            <include
+                android:id="@+id/lyTrendingMovieContainer"
+                layout="@layout/layout_movie_container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_10sdp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/lyPopularMovieContainer" />
+
+            <ProgressBar
+                android:id="@+id/pbLoadMore"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:indeterminateTint="@color/black"
+                android:textAlignment="center"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

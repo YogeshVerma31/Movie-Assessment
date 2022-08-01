@@ -38,6 +38,13 @@ class MovieRepository(
         )
     }
 
+    suspend fun getTrendingMovie(showBlockingLoader: Boolean, apiKey: String): MovieModel {
+        return doSafeAPIRequest(
+            call = { movieApiService.getTrendingMovie(apiKey) },
+            showBlockingLoader = showBlockingLoader
+        )
+    }
+
 
 
 }

@@ -16,6 +16,7 @@ class MovieViewModel(baseActivity: BaseActivity?):BaseViewModel(){
     internal val movieListLiveData = MutableLiveData<MovieModel>()
     internal val movieMoreListLiveData = MutableLiveData<MovieModel>()
     internal val movieUpcomingListLiveData = MutableLiveData<MovieModel>()
+    internal val movieTrendingListLiveData = MutableLiveData<MovieModel>()
     internal val movieDetailsListLiveData = MutableLiveData<MovieDetailsModel>()
 
     fun getMovies(showBlockingLoader:Boolean,apiKey:String){
@@ -26,10 +27,23 @@ class MovieViewModel(baseActivity: BaseActivity?):BaseViewModel(){
                 e.printStackTrace()
             }
         }
-    }fun getUpcomingMovies(showBlockingLoader:Boolean,apiKey:String){
+
+    }
+
+    fun getUpcomingMovies(showBlockingLoader:Boolean,apiKey:String){
         scope.launch {
             try{
                 movieUpcomingListLiveData.postValue(movieRepository.getUpcomingMovies(showBlockingLoader,apiKey))
+            }catch (e:Throwable){
+                e.printStackTrace()
+            }
+        }
+    }
+
+    fun getTrendingMovies(showBlockingLoader:Boolean,apiKey:String){
+        scope.launch {
+            try{
+                movieTrendingListLiveData.postValue(movieRepository.getTrendingMovie(showBlockingLoader,apiKey))
             }catch (e:Throwable){
                 e.printStackTrace()
             }

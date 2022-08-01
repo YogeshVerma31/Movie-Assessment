@@ -13,7 +13,7 @@ import com.app.yogesh_verma_movie.base.BaseActivity
 import com.app.yogesh_verma_movie.base.BaseFragment
 import com.app.yogesh_verma_movie.databinding.FragmentMovieBinding
 import com.app.yogesh_verma_movie.model.Results
-import com.app.yogesh_verma_movie.movie_module.adapters.MovieAdapter
+import com.app.yogesh_verma_movie.movie_module.adapters.MultiAdapter
 import com.app.yogesh_verma_movie.movie_module.listeners.OnMovieItemClickListener
 import com.app.yogesh_verma_movie.movie_module.screens.activity.MovieDetailActivity.Companion.getIntent
 import com.app.yogesh_verma_movie.movie_module.viewmodel.MovieViewModel
@@ -24,19 +24,22 @@ class MovieFragment : BaseFragment() {
     companion object {
         var TAG = BaseFragment::class.java.simpleName
 
-        fun getInstance():MovieFragment{
+        fun getInstance(): MovieFragment {
             return MovieFragment()
         }
     }
 
     private var _viewBinder: FragmentMovieBinding? = null
-    private var movieList:MutableList<Results> = arrayListOf()
-    private lateinit var movieVideoModel:MovieViewModel
-    private lateinit var popularMovieAdapter:MovieAdapter
-    private lateinit var upcomingMovieAdapter:MovieAdapter
+    private var movieList: MutableList<Results> = arrayListOf()
+    private lateinit var movieVideoModel: MovieViewModel
+    private lateinit var popularMultiAdapter: MultiAdapter<Results>
+    private lateinit var upcomingMultiAdapter: MultiAdapter<Results>
+    private lateinit var trendingMultiAdapter: MultiAdapter<Results>
+
+
     private var pageCount: Int = 1
 
-    private var movieDetailFragment:MovieDetailFragment ?=null
+    private var movieDetailFragment: MovieDetailFragment? = null
 
 
     override fun onCreateView(
@@ -48,9 +51,14 @@ class MovieFragment : BaseFragment() {
     }
 
     override fun initViewModels() {
-        movieVideoModel = getViewModel(fragment = this,viewModel = MovieViewModel(activity as BaseActivity),className = MovieViewModel::class.java)
-        movieVideoModel.getMovies(true,BuildConfig.API_KEY)
-        movieVideoModel.getUpcomingMovies(true,BuildConfig.API_KEY)
+        movieVideoModel = getViewModel(
+            fragment = this,
+            viewModel = MovieViewModel(activity as BaseActivity),
+            className = MovieViewModel::class.java
+        )
+        movieVideoModel.getMovies(true, BuildConfig.API_KEY)
+        movieVideoModel.getUpcomingMovies(true, BuildConfig.API_KEY)
+        movieVideoModel.getTrendingMovies(true, BuildConfig.API_KEY)
 
     }
 
@@ -59,26 +67,45 @@ class MovieFragment : BaseFragment() {
     }
 
     override fun initView(view: View) {
-        popularMovieAdapter = MovieAdapter()
+        popularMultiAdapter = MultiAdapter(R.layout.item_movie)
         _viewBinder!!.lyPopularMovieContainer.rvMovieMain.apply {
-            layoutManager =LinearLayoutManager(context,LinearLayoutManager.HORIZONTAL,false)
-            adapter = popularMovieAdapter
+            layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+            adapter = popularMultiAdapter
         }
-        popularMovieAdapter.apply {
+        popularMultiAdapter.apply {
             setOnClickListener(onMovieItemClickListener)
         }
 
         setUpcomingMovieRecyclerview()
+        setTrendingMovieRecyclerview()
+    }
+
+    private fun setTrendingMovieRecyclerview() {
+        trendingMultiAdapter = MultiAdapter(R.layout.item_trending)
+        _viewBinder!!.lyTrendingMovieContainer.apply {
+            tvCategoryMain.text = getString(R.string.text_trending_movies)
+            btnMain.visibility = View.GONE
+            rvMovieMain.apply {
+
+                layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+                adapter = trendingMultiAdapter
+            }
+        }
+
+        trendingMultiAdapter.apply {
+            setOnClickListener(onMovieItemClickListener)
+        }
     }
 
     private fun setUpcomingMovieRecyclerview() {
-        upcomingMovieAdapter = MovieAdapter()
-        _viewBinder!!.lyUpcomingMovieContainer.tvCategoryMain.text = getString(R.string.text_upcoming_movies)
+        upcomingMultiAdapter = MultiAdapter(R.layout.item_movie)
+        _viewBinder!!.lyUpcomingMovieContainer.tvCategoryMain.text =
+            getString(R.string.text_upcoming_movies)
         _viewBinder!!.lyUpcomingMovieContainer.rvMovieMain.apply {
-            layoutManager =LinearLayoutManager(context,LinearLayoutManager.HORIZONTAL,false)
-            adapter = upcomingMovieAdapter
+            layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+            adapter = upcomingMultiAdapter
         }
-        upcomingMovieAdapter.apply {
+        upcomingMultiAdapter.apply {
             setOnClickListener(onMovieItemClickListener)
         }
     }
@@ -88,48 +115,53 @@ class MovieFragment : BaseFragment() {
     }
 
     override fun setObservers() {
+
+
+        movieVideoModel.movieUpcomingListLiveData.observe(this, Observer {
+            if (it.results != null) {
+                upcomingMultiAdapter.addItems(it.results!!)
+                _viewBinder?.pbLoadMore?.visibility = View.GONE
+            }
+        })
+
         movieVideoModel.movieListLiveData.observe(this, Observer {
-            if (it.results!=null){
-                popularMovieAdapter.addItems(it.results!!)
+            if (it.results != null) {
+                popularMultiAdapter.addItems(it.results!!)
                 pageCount++
             }
         })
 
-        movieVideoModel.movieUpcomingListLiveData.observe(this, Observer {
-            if (it.results!=null){
-                upcomingMovieAdapter.addItems(it.results!!)
-                _viewBinder?.pbLoadMore?.visibility =View.GONE
+        movieVideoModel.movieTrendingListLiveData.observe(this, Observer {
+            if (it.results != null) {
+                trendingMultiAdapter.addItems(it.results!!)
+                _viewBinder?.pbLoadMore?.visibility = View.GONE
             }
         })
 
 
-
-
     }
 
-    private val onMovieItemClickListener = object : OnMovieItemClickListener{
+    private val onMovieItemClickListener = object : OnMovieItemClickListener {
         override fun onMovieItemClick(results: Results?, position: Int) {
-            getIntent(context,results!!)
+            getIntent(context, results!!)
         }
 
     }
 
 
-
-    private val onScrollListener =object: RecyclerView.OnScrollListener() {
+    private val onScrollListener = object : RecyclerView.OnScrollListener() {
         override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
             super.onScrolled(recyclerView, dx, dy)
-            if (!_viewBinder!!.rvMovie.canScrollVertically(1)){
+            if (!_viewBinder!!.rvMovie.canScrollVertically(1)) {
                 loadMoreMovies()
             }
         }
     }
 
-    private fun loadMoreMovies(){
-        _viewBinder?.pbLoadMore?.visibility =View.VISIBLE
-        movieVideoModel.getMoreMovies(false,BuildConfig.API_KEY,pageCount)
+    private fun loadMoreMovies() {
+        _viewBinder?.pbLoadMore?.visibility = View.VISIBLE
+        movieVideoModel.getMoreMovies(false, BuildConfig.API_KEY, pageCount)
     }
-
 
 
 }

@@ -1,5 +1,6 @@
 package com.app.yogesh_verma_movie.model
 
+import com.app.yogesh_verma_movie.movie_module.viewmodel.ItemViewModel
 import com.google.gson.annotations.SerializedName
 import java.io.Serializable
 
@@ -45,5 +46,5 @@ data class Results(
     var voteAverage: Double? =   null,
     @SerializedName("vote_count")
     var voteCount: Int = 0
-):Serializable
+):Serializable,ItemViewModel()
 
